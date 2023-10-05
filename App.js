@@ -1,17 +1,53 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 
 export default function App() {
+  const [response, setResponse] = useState("fart");
   return (
     <View style={styles.container}>
       <View style={styles.eightBall}></View>
       <View style={styles.ballCenter}></View>
       <View style={styles.textContainer}></View>
-      <Text style={styles.ballText}>text goes here</Text>
+      <Text style={styles.ballText}>{response}</Text>
+      <Pressable style={styles.askButton}>
+        <Text
+          style={styles.askButtonText}
+          onPress={() =>
+            setResponse(
+              answers[Math.ceil(Math.random() * (answers.length - 1))]
+            )
+          }
+        >
+          Ask the 8 Ball
+        </Text>
+      </Pressable>
     </View>
   );
 }
 /* <StatusBar style="auto" /> */
+
+const answers = [
+  "It is certain",
+  "Reply hazy, try again",
+  "Don’t count on it",
+  "It is decidedly so",
+  "Ask again later",
+  "My reply is no",
+  "Without a doubt",
+  "Better not tell you now",
+  "My sources say no",
+  "Yes definitely",
+  "Cannot predict now",
+  "Outlook not so good",
+  "You may rely on it",
+  "Concentrate and ask again",
+  "Very doubtful",
+  "As I see it, yes",
+  "Most likely",
+  "Outlook good",
+  "Yes",
+  "Signs point to yes",
+];
 
 const styles = StyleSheet.create({
   container: {
@@ -21,12 +57,12 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
   },
   eightBall: {
-    width: 500,
-    height: 500,
+    width: 400,
+    height: 400,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "black",
-    borderRadius: 500 / 2,
+    borderRadius: 400 / 2,
   },
   ballCenter: {
     position: "absolute",
@@ -39,7 +75,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     height: 0,
     width: 0,
-
     backgroundColor: "transparent",
     borderStyle: "solid",
     borderLeftWidth: 75,
@@ -56,5 +91,22 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "white",
     textAlign: "center",
+  },
+  askButton: {
+    margin: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "black",
+  },
+  askButtonText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
   },
 });
